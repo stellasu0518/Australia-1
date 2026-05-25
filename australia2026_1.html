@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>🦘 澳洲 2026｜家族旅遊行程</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sky: #0ea5e9;
+  --ocean: #0369a1;
+  --deep: #082f49;
+  --sand: #fde68a;
+  --coral: #fb923c;
+  --leaf: #22c55e;
+  --soft: #f0f9ff;
+  --white: #ffffff;
+  --muted: #94a3b8;
+  --text: #1e293b;
+  --radius: 16px;
+  --shadow: 0 4px 24px rgba(3,105,161,0.10);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans TC', sans-serif; background: var(--soft); color: var(--text); max-width: 480px; margin: 0 auto; min-height: 100vh; }
+
+.hero { background: linear-gradient(160deg, var(--deep) 0%, var(--ocean) 60%, var(--sky) 100%); padding: 48px 24px 36px; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; bottom: -30px; left: -20px; right: -20px; height: 60px; background: var(--soft); border-radius: 50% 50% 0 0 / 60px 60px 0 0; }
+.hero-emoji { font-size: 48px; display: block; margin-bottom: 8px; }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; color: var(--white); line-height: 1.2; }
+.hero-sub { margin-top: 6px; color: rgba(255,255,255,0.75); font-size: 13px; font-weight: 300; letter-spacing: 1px; }
+.hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.hero-tag { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); color: var(--white); font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 20px; }
+.weather-bar { margin-top: 18px; background: rgba(255,255,255,0.12); border-radius: 12px; padding: 10px 14px; font-size: 12px; color: rgba(255,255,255,0.9); display: flex; align-items: center; gap: 8px; }
+
+.tab-bar { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid #e2e8f0; display: flex; overflow-x: auto; scrollbar-width: none; padding: 0 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.tab-bar::-webkit-scrollbar { display: none; }
+.tab-btn { flex-shrink: 0; padding: 12px 14px; font-size: 12px; font-weight: 500; color: var(--muted); border: none; background: none; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; font-family: 'Noto Sans TC', sans-serif; }
+.tab-btn.active { color: var(--ocean); border-bottom-color: var(--ocean); font-weight: 700; }
+
+.section { display: none; padding: 20px 16px 80px; }
+.section.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+
+/* OVERVIEW */
+.overview-grid { display: flex; flex-direction: column; gap: 10px; }
+.day-card { background: var(--white); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 14px; cursor: pointer; transition: transform 0.15s; }
+.day-card:active { transform: scale(0.98); }
+.day-num { min-width: 52px; height: 52px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 700; font-size: 11px; }
+.day-num .num { font-size: 20px; font-weight: 900; line-height: 1; }
+.day-info { flex: 1; }
+.day-title { font-size: 14px; font-weight: 700; }
+.day-loc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.day-arrow { color: var(--muted); font-size: 18px; }
+.c-bne { background: linear-gradient(135deg,#dbeafe,#bfdbfe); color: #1e40af; }
+.c-sun { background: linear-gradient(135deg,#fef3c7,#fde68a); color: #92400e; }
+.c-gc  { background: linear-gradient(135deg,#d1fae5,#a7f3d0); color: #065f46; }
+.c-byr { background: linear-gradient(135deg,#ede9fe,#ddd6fe); color: #4c1d95; }
+.c-pm  { background: linear-gradient(135deg,#fee2e2,#fecaca); color: #7f1d1d; }
+.c-ncl { background: linear-gradient(135deg,#e0f2fe,#bae6fd); color: #0c4a6e; }
+.c-syd { background: linear-gradient(135deg,#fce7f3,#fbcfe8); color: #831843; }
+.c-dep { background: linear-gradient(135deg,#f1f5f9,#e2e8f0); color: #475569; }
+
+/* TIMELINE */
+.day-section { margin-bottom: 28px; }
+.day-header { background: linear-gradient(135deg, var(--ocean), var(--sky)); border-radius: var(--radius) var(--radius) 0 0; padding: 14px 18px; color: var(--white); }
+.day-header .dh-label { font-size: 11px; opacity: 0.8; letter-spacing: 1px; text-transform: uppercase; }
+.day-header .dh-date { font-size: 18px; font-weight: 700; margin-top: 2px; }
+.day-header .dh-loc { font-size: 13px; opacity: 0.85; margin-top: 2px; }
+.dh-depart { display: inline-block; background: rgba(255,255,255,0.2); border-radius: 8px; padding: 4px 10px; font-size: 12px; font-weight: 700; margin-top: 8px; }
+
+.drive-banner { background: #1e293b; color: #94a3b8; padding: 8px 18px; font-size: 12px; display: flex; align-items: center; gap: 8px; }
+.drive-banner a { margin-left: auto; color: var(--sky); font-size: 11px; text-decoration: none; font-weight: 600; }
+.drive-time { color: #fde68a; font-weight: 700; margin-left: 4px; }
+
+.timeline { background: var(--white); border-radius: 0 0 var(--radius) var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+.tl-item { display: flex; border-bottom: 1px solid #f1f5f9; }
+.tl-item:last-child { border-bottom: none; }
+.tl-time { min-width: 60px; padding: 14px 6px 14px 12px; font-size: 11px; font-weight: 700; color: var(--muted); text-align: right; padding-top: 17px; }
+.tl-dot-col { width: 28px; display: flex; flex-direction: column; align-items: center; padding-top: 18px; }
+.tl-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--sky); flex-shrink: 0; }
+.tl-line { width: 2px; flex: 1; background: #e2e8f0; margin-top: 4px; }
+.tl-item:last-child .tl-line { display: none; }
+.tl-content { flex: 1; padding: 12px 14px 12px 4px; }
+.tl-title { font-size: 14px; font-weight: 700; color: var(--text); }
+.tl-note { font-size: 12px; color: #64748b; margin-top: 3px; line-height: 1.6; }
+.tl-badge { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 10px; margin-top: 5px; font-weight: 600; margin-right: 4px; }
+.badge-green { background: #dcfce7; color: #16a34a; }
+.badge-yellow { background: #fef9c3; color: #a16207; }
+.badge-red { background: #fee2e2; color: #dc2626; }
+.badge-blue { background: #dbeafe; color: #1d4ed8; }
+
+/* walk/drive between spots */
+.tl-transit { display: flex; border-bottom: 1px solid #f1f5f9; background: #f8fafc; }
+.tl-transit .tl-time { color: #cbd5e1; font-size: 10px; }
+.tl-transit .tl-dot { background: #cbd5e1; width: 8px; height: 8px; }
+.tl-transit .tl-content { padding: 8px 14px 8px 4px; }
+.tl-transit-note { font-size: 11px; color: #94a3b8; display: flex; align-items: center; gap: 4px; }
+
+/* restaurant */
+.tl-item.restaurant .tl-dot { background: var(--coral); }
+.restaurant-card { background: linear-gradient(135deg,#fff7ed,#ffedd5); border-left: 3px solid var(--coral); border-radius: 8px; padding: 10px 12px; margin-top: 4px; }
+.restaurant-card .rc-name { font-size: 13px; font-weight: 700; color: #c2410c; }
+.restaurant-card .rc-type { font-size: 11px; color: #9a3412; margin-top: 2px; }
+.restaurant-card .rc-note { font-size: 11px; color: #7c3520; margin-top: 3px; }
+.or-divider { text-align: center; font-size: 10px; color: var(--muted); font-weight: 700; padding: 4px 0; letter-spacing: 2px; }
+
+/* alt option tag */
+.tl-item.alt-option { background: #fafafa; }
+.tl-item.alt-option .tl-dot { background: #f97316; }
+
+.nav-btn { display: inline-flex; align-items: center; gap: 5px; background: var(--ocean); color: var(--white); font-size: 11px; font-weight: 600; padding: 5px 11px; border-radius: 20px; text-decoration: none; margin-top: 6px; }
+
+/* CHECKLIST */
+.checklist-section { margin-bottom: 24px; }
+.cl-header { font-size: 13px; font-weight: 700; color: var(--ocean); padding: 10px 0 6px; letter-spacing: 0.5px; text-transform: uppercase; border-bottom: 2px solid var(--sky); margin-bottom: 10px; }
+.cl-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; background: var(--white); border-radius: 10px; margin-bottom: 8px; box-shadow: 0 1px 6px rgba(0,0,0,0.05); }
+.cl-item input[type=checkbox] { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--ocean); cursor: pointer; flex-shrink: 0; }
+.cl-item label { font-size: 13px; line-height: 1.5; cursor: pointer; }
+.cl-item label .cl-title { font-weight: 700; display: block; }
+.cl-item label .cl-desc { color: #64748b; font-size: 12px; }
+.badge-urgent { display: inline-block; background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 8px; margin-left: 6px; }
+.badge-soon { display: inline-block; background: #fffbeb; color: #d97706; border: 1px solid #fde68a; font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 8px; margin-left: 6px; }
+.badge-ok { display: inline-block; background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 8px; margin-left: 6px; }
+
+/* TIPS */
+.tips-card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 14px; overflow: hidden; }
+.tips-card-header { padding: 14px 16px; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.tips-card-body { padding: 0 16px 14px; display: none; }
+.tips-card-body.open { display: block; }
+.tip-item { font-size: 12px; color: #475569; line-height: 1.7; padding: 5px 0; border-bottom: 1px solid #f1f5f9; }
+.tip-item:last-child { border-bottom: none; }
+.tip-highlight { background: #fffbeb; border-left: 3px solid var(--coral); border-radius: 0 8px 8px 0; padding: 8px 12px; font-size: 12px; color: #92400e; margin: 8px 0; line-height: 1.6; }
+
+/* WEATHER */
+#weatherGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+.w-card { background: var(--white); border-radius: 12px; padding: 12px; box-shadow: var(--shadow); text-align: center; }
+.w-card .w-city { font-size: 11px; font-weight: 700; color: var(--ocean); }
+.w-card .w-emoji { font-size: 28px; margin: 4px 0; }
+.w-card .w-temp { font-size: 13px; font-weight: 700; }
+.w-card .w-desc { font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+.footer { text-align: center; padding: 24px 16px; font-size: 11px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="hero-emoji">🦘</span>
+  <h1>澳洲東岸<br>家族旅遊 2026</h1>
+  <p class="hero-sub">8/5 – 8/19 ｜ 14 NIGHTS ｜ SELF-DRIVE</p>
+  <div class="hero-tags">
+    <span class="hero-tag">👨‍👩‍👧 四大兩小</span>
+    <span class="hero-tag">🚗 自駕</span>
+    <span class="hero-tag">✈️ CI53／CI52</span>
+    <span class="hero-tag">🌏 布里斯本→雪梨</span>
+  </div>
+  <div class="weather-bar">
+    <span>🌤️</span>
+    <span>澳洲8月冬季｜氣溫 10–24°C｜偶有陣雨，帶折疊傘</span>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="showTab('overview',this)">總覽</button>
+  <button class="tab-btn" onclick="showTab('itinerary',this)">行程</button>
+  <button class="tab-btn" onclick="showTab('checklist',this)">代辦</button>
+  <button class="tab-btn" onclick="showTab('tips',this)">注意事項</button>
+  <button class="tab-btn" onclick="showTab('weather',this)">天氣</button>
+</div>
+
+<!-- ══════════════ TAB 1: OVERVIEW ══════════════ -->
+<div id="tab-overview" class="section active">
+  <div class="overview-grid">
+    <div class="day-card" onclick="goDay('d0')">
+      <div class="day-num c-dep"><div class="num">0</div>8/5三</div>
+      <div class="day-info"><div class="day-title">✈️ 台北出發</div><div class="day-loc">CI53 23:55 → 布里斯本 10:35+1</div></div>
+      <div class="day-arrow">›</div>
+    </div>
+    <div class="day-card" onclick="goDay('d1')">
+      <div class="day-num c-bne"><div class="num">1</div>8/6四</div>
+      <div class="day-info"><div class="day-title">🛬 抵達 Brisbane</div><div class="day-loc">Southbank Park 市區漫遊</div></div>
+      <div class="day-arrow">›</div>
+    </div>
+    <div class="day-card" onclick="goDay('d2')">
+      <div class="day-num c-bne"><div class="num">2</div>8/7五</div>
+      <div class="day-info"><div class="day-title">⛵ GoBoat + Museum</div><div class="day-loc">Brisbane River 遊船 ＋ Queensland Museum</div></div>
+      <div class="day-arrow">›</div>
+    </div>
+    <div class="day-card" onclick="goDay('d3')">
+      <div class="day-num c-bne"><div class="num">3</div>8/8六</div>
+      <div class="day-info"><div class="day-title">🎡 EKKA 開幕日！</div><div class="day-loc">動物 ｜ 草莓聖代 ｜ 煙火賽車</div></div>
+      <div class="day-arrow">›</div>
+    </div>
+    <div class="day-card" onclick="goDay('d4')">
+      <div class="day-num c-sun"><div class="num">4</div>8/9日</div>
+      <div class="day-info"><div class="day-title">🚗 → 陽光海岸</div><div class="day-loc">取車 ｜ Ginger Factory 或 TreeTop ｜ Noosa</div></div>
+      <div class="day-arrow">›</div>
+    </div>
+    <div class="day-card" onclick="goDay('d5')">
+      <div class="day-num c-sun"><div class="num">5</div>8/10一</div>
+      <div class="day-info"><div class="day-title">🐨 Australia Zoo</div><div class="day-loc">無尾熊＋袋熊合照（需預約）</div></div>
+      <div class="day-arrow">›</div>
+    </div>
+    <div class="day-card" onclick="goDay('d6')">
+      <div class="day-num c-gc"><div class="num">6</div>8/11二</div>
+      <div class="day-info"><div class="day-title">🐨 龍柏 → 黃金海岸</div><div class="day-loc">Lone Pine ｜ Aquaduck ｜ Skypoint</div></div>
+      <div class="day-arrow">›</div>
+    </div>
+    <div class="day-card" onclick="goDay('d7')">
+      <div class="day-num c-gc"><div class="num">7</div>8/12三</div>
+      <div class="day-info"><div class="day-title">🌊 Sea World</div><div class="day-loc">海洋世界 ｜ Harbour Town 購物</div></div>
+      <div class="day-arrow">›</div>
+    </div>
+    <div class="day-card" onclick="goDay('d8')">
+      <div class="day-num c-byr"><div class="num">8</div>8/13四</div>
+      <div class="day-info"><div class="day-title">🐋 Byron Bay</div><div class="day-loc">Cape Byron 燈塔 ｜ 賞鯨</div></div>
+      <div class="day-arrow">›</div>
+    </div>
+    <div class="day-card" onclick="goDay('d9')">
+      <div class="day-num c-pm"><div class="num">9</div>8/14五</div>
+      <div class="day-info"><div class="day-title">🦎 Port Macquarie</div><div class="day-loc">長途自駕 ｜ Maclean ｜ Coffs Harbour</div></div>
+      <div class="day-arrow">›</div>
+    </div>
+    <div class="day-card" onclick="goDay('d10')">
+      <div class="day-num c-ncl"><div class="num">10</div>8/15六</div>
+      <div class="day-info"><div class="day-title">🏄 Newcastle</div><div class="day-loc">Guulabaa ｜ 沙丘 ｜ Breakwater 日落</div></div>
+      <div class="day-arrow">›</div>
+    </div>
+    <div class="day-card" onclick="goDay('d11')">
+      <div class="day-num c-syd"><div class="num">11</div>8/16日</div>
+      <div class="day-info"><div class="day-title">🚗 → Sydney 還車</div><div class="day-loc">The Entrance ｜ 17:00還車 ｜ Darling Harbour</div></div>
+      <div class="day-arrow">›</div>
+    </div>
+    <div class="day-card" onclick="goDay('d12')">
+      <div class="day-num c-syd"><div class="num">12</div>8/17一</div>
+      <div class="day-info"><div class="day-title">🐟 雪梨市區</div><div class="day-loc">魚市場 ｜ 歌劇院 ｜ 皇家植物園</div></div>
+      <div class="day-arrow">›</div>
+    </div>
+    <div class="day-card" onclick="goDay('d13')">
+      <div class="day-num c-syd"><div class="num">13</div>8/18二</div>
+      <div class="day-info"><div class="day-title">🦘 Perfect Day Sydney</div><div class="day-loc">野生袋熊、袋鼠、瀑布全日遊</div></div>
+      <div class="day-arrow">›</div>
+    </div>
+    <div class="day-card" onclick="goDay('d14')">
+      <div class="day-num c-syd"><div class="num">14</div>8/19三</div>
+      <div class="day-info"><div class="day-title">🦁 Taronga Zoo → 回家</div><div class="day-loc">CI52 22:00 回台北</div></div>
+      <div class="day-arrow">›</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ TAB 2: ITINERARY ══════════════ -->
+<div id="tab-itinerary" class="section">
+
+<!-- DAY 0 -->
+<div class="day-section" id="d0">
+  <div class="day-header">
+    <div class="dh-label">出發日</div>
+    <div class="dh-date">8/5（三）台北</div>
+    <div class="dh-loc">✈️ 啟程</div>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">23:55</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">✈️ CI53 起飛</div>
+        <div class="tl-note">台北桃園 TPE → 布里斯本 BNE<br>抵達：8/6（四）10:35</div>
+        <span class="tl-badge badge-blue">🟢 室內</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">提醒</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🧳 行前確認</div>
+        <div class="tl-note">護照、ETA簽證、國際駕照、Type I轉接頭、澳幣現金<br>⚠️ 肉類、蔬果、補品等食物禁止攜帶入境澳洲</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 1 -->
+<div class="day-section" id="d1">
+  <div class="day-header">
+    <div class="dh-label">Day 1</div>
+    <div class="dh-date">8/6（四）布里斯本</div>
+    <div class="dh-loc">🛬 抵達 ＋ Southbank</div>
+    <div class="dh-depart">🕙 抵達後自由行動，無需早起</div>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">10:35</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🛬 抵達布里斯本機場</div>
+        <div class="tl-note">辦理入境、行李提領、海關申報<br>搭 Taxi 前往 South Brisbane Airbnb</div>
+        <span class="tl-badge badge-yellow">⏱ 機場→住宿約30分</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Brisbane+Airport+BNE" target="_blank">🗺 機場導航</a>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚕 Taxi 約30分鐘 → South Brisbane</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">下午</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🏖️ Southbank Parklands</div>
+        <div class="tl-note">Streets Beach 免費人工沙灘、大型遊樂場<br>輕鬆散步，讓孩子放電</div>
+        <span class="tl-badge badge-yellow">🌤️ 戶外</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=South+Bank+Parklands+Brisbane" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚶 步行 約10分鐘</div></div>
+    </div>
+    <div class="tl-item restaurant">
+      <div class="tl-time">晚餐</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="restaurant-card">
+          <div class="rc-name">🌶️ Siam South Bank</div>
+          <div class="rc-type">泰式 ｜ 親子友善 ｜ 有兒童菜單</div>
+          <div class="rc-note">⚠️ 建議提前訂位</div>
+        </div>
+        <div class="or-divider">— 或 —</div>
+        <div class="restaurant-card">
+          <div class="rc-name">🍕 Felons</div>
+          <div class="rc-type">河景餐廳＋自釀啤酒 ｜ 布里斯本河＋故事橋夜景</div>
+          <div class="rc-note">City Hall步行6分 ｜ 17:30–21:45 ｜ ⚠️ 建議訂位</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 2 -->
+<div class="day-section" id="d2">
+  <div class="day-header">
+    <div class="dh-label">Day 2</div>
+    <div class="dh-date">8/7（五）布里斯本</div>
+    <div class="dh-loc">⛵ GoBoat + Queensland Museum</div>
+    <div class="dh-depart">🕙 建議 10:00 出門（GoBoat 10:45 到場）</div>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">10:45</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">⛵ GoBoat Brisbane</div>
+        <div class="tl-note">提早15分鐘到場、簽 Waiver 建議攜帶電子版<br>駕駛 0.00 BAC，每人最多2杯酒精飲料<br>遊覽約2小時</div>
+        <span class="tl-badge badge-yellow">🌤️ 戶外水上</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=GoBoat+Brisbane" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚶 步行 約5分鐘 → Queensland Museum</div></div>
+    </div>
+    <div class="tl-item restaurant">
+      <div class="tl-time">午餐</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="restaurant-card">
+          <div class="rc-name">🥞 Poppies Southbank</div>
+          <div class="rc-type">All-day Brunch ｜ 輕鬆 casual ｜ Little Stanley St</div>
+          <div class="rc-note">GoBoat 結束後順路</div>
+        </div>
+        <div class="or-divider">— 或 —</div>
+        <div class="restaurant-card">
+          <div class="rc-name">☕ Coffee Iconic</div>
+          <div class="rc-type">台灣人開 ｜ 亞洲融合 ｜ 鮮蝦義大利麵必點</div>
+          <div class="rc-note">City Hall步行4分 ｜ 07:00–14:30（週日公休）</div>
+        </div>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚶 步行 約3分鐘 → Queensland Museum</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">下午</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🦕 Queensland Museum Kurilpa</div>
+        <div class="tl-note">看化石！免費入館，適合6歲以下小孩</div>
+        <span class="tl-badge badge-green">🟢 室內</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Queensland+Museum+Brisbane" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-item restaurant">
+      <div class="tl-time">晚餐</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="restaurant-card">
+          <div class="rc-name">🌶️ Doodee Boran</div>
+          <div class="rc-type">泰式 ｜ 泰奶必點 ｜ 生意超好</div>
+          <div class="rc-note">City Hall步行6分 ｜ ⚠️ 強烈建議提前訂位，否則等1小時</div>
+        </div>
+        <div class="or-divider">— 或 —</div>
+        <div class="restaurant-card">
+          <div class="rc-name">☕ Coffee Anthology</div>
+          <div class="rc-type">台灣人開 ｜ Latte 超推 ｜ 鬆餅擺盤美</div>
+          <div class="rc-note">City Hall步行7分 ｜ 07:30–15:30（早餐午餐）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 3 -->
+<div class="day-section" id="d3">
+  <div class="day-header">
+    <div class="dh-label">Day 3</div>
+    <div class="dh-date">8/8（六）布里斯本</div>
+    <div class="dh-loc">🎡 EKKA 開幕日！</div>
+    <div class="dh-depart">🕙 建議 10:00 出門，下午進場人氣最旺</div>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">全天</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🎡 EKKA Royal Queensland Show</div>
+        <div class="tl-note">Animal Nursery 動物區<br>🍓 草莓聖代一定要吃！<br>🎆 晚上競技場煙火秀 ＋ 賽車表演</div>
+        <span class="tl-badge badge-yellow">🌤️ 半戶外，帶傘</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Brisbane+Showgrounds+RNA+EKKA" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-item restaurant">
+      <div class="tl-time">餐食</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="restaurant-card">
+          <div class="rc-name">🎠 EKKA 場內美食</div>
+          <div class="rc-type">草莓聖代 ｜ 澳式炸物 ｜ Show Bags</div>
+          <div class="rc-note">場內解決，無需額外訂位</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 4 -->
+<div class="day-section" id="d4">
+  <div class="day-header">
+    <div class="dh-label">Day 4</div>
+    <div class="dh-date">8/9（日）→ 陽光海岸</div>
+    <div class="dh-loc">🚗 取車 ｜ 景點 ｜ Noosa ｜ Mooloolaba</div>
+    <div class="dh-depart">🕗 建議 08:30 出門取車，景點多需早出發</div>
+  </div>
+  <div class="drive-banner">
+    🚗 South Brisbane → Yandina/Woombye（景點）<span class="drive-time">約1小時</span>
+    <a href="https://maps.google.com/?saddr=South+Brisbane&daddr=Yandina+QLD" target="_blank">開導航 ›</a>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">08:30</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🚗 Avis 取車</div>
+        <div class="tl-note">South Brisbane 市區取車<br>確認：兒童座椅 ✓ 保險 ✓ 還車地點（雪梨，8/16）</div>
+        <a class="nav-btn" href="https://maps.google.com/?q=Avis+Brisbane+City" target="_blank">🗺 取車地點</a>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚗 車程約1小時 → Yandina / Woombye</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">10:00</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🍍 二擇一：Ginger Factory 或 TreeTop Challenge</div>
+        <div class="tl-note" style="margin-bottom:8px;">⬇️ 選一個，約2–2.5小時</div>
+
+        <div class="restaurant-card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-left-color:#16a34a;margin-bottom:6px;">
+          <div class="rc-name" style="color:#166534;">🏭 Option A：Ginger Factory</div>
+          <div class="rc-type" style="color:#14532d;">薑汁冰淇淋、小火車、船遊 ｜ 全年齡 ｜ 雨天大部分有遮蔽</div>
+          <div class="rc-note" style="color:#166534;">50 Pioneer Rd, Yandina ｜ 09:00–17:00</div>
+        </div>
+        <div class="or-divider">— 或 —</div>
+        <div class="restaurant-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border-left-color:#2563eb;margin-top:6px;">
+          <div class="rc-name" style="color:#1e3a8a;">🌲 Option B：TreeTop Challenge Juniors</div>
+          <div class="rc-type" style="color:#1e40af;">4–9歲專屬 ｜ 70個繩索挑戰＋5條飛狐 ｜ Big Pineapple旁</div>
+          <div class="rc-note" style="color:#1e3a8a;">76 Nambour Connection Rd, Woombye ｜ 含30分安全訓練，共2小時 ｜ ⚠️需預約</div>
+        </div>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=The+Ginger+Factory+Yandina" target="_blank">🗺 Ginger Factory</a>
+        <a class="nav-btn" href="https://maps.google.com/?q=TreeTop+Challenge+Big+Pineapple+Woombye" target="_blank">🗺 TreeTop</a>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚗 車程約30分鐘 → Noosa Heads</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">13:30</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🏖️ Noosa 海灘</div>
+        <div class="tl-note">Noosa Main Beach 散步，可輕鬆進入國家公園入口</div>
+        <span class="tl-badge badge-red">🔴 大雨備案：Noosa Heads 市區逛街</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Noosa+Main+Beach" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚗 車程約45分鐘 → Mooloolaba</div></div>
+    </div>
+    <div class="tl-item restaurant">
+      <div class="tl-time">晚餐</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="restaurant-card">
+          <div class="rc-name">🛶 Noosa Boathouse</div>
+          <div class="rc-type">河上漂浮餐廳 ｜ 新鮮海產 ｜ 景觀絕佳</div>
+          <div class="rc-note">⚠️ 建議提前訂位</div>
+        </div>
+        <div class="or-divider">— 或 —</div>
+        <div class="restaurant-card">
+          <div class="rc-name">🍕 The Wharf Mooloolaba</div>
+          <div class="rc-type">海鮮市集 casual ｜ 多間選擇 ｜ Mooloolaba碼頭旁</div>
+          <div class="rc-note">無需訂位，輕鬆方便</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 5 -->
+<div class="day-section" id="d5">
+  <div class="day-header">
+    <div class="dh-label">Day 5</div>
+    <div class="dh-date">8/10（一）陽光海岸</div>
+    <div class="dh-loc">🐨 Australia Zoo</div>
+    <div class="dh-depart">🕗 建議 08:30 出門，Zoo開門09:00</div>
+  </div>
+  <div class="drive-banner">
+    🚗 Mooloolaba → Australia Zoo（Beerwah）<span class="drive-time">約40分鐘</span>
+    <a href="https://maps.google.com/?saddr=Mooloolaba&daddr=Australia+Zoo+Beerwah" target="_blank">開導航 ›</a>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">09:00</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🐨 Australia Zoo 全天</div>
+        <div class="tl-note">⚠️ 無尾熊抱抱（Wildlife Experience）需提前預約，名額有限<br>袋熊、鱷魚表演、袋鼠餵食<br>⚠️ 週一全館開放需出發前再確認</div>
+        <span class="tl-badge badge-yellow">🌤️ 大部分戶外，帶傘</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Australia+Zoo+Beerwah+QLD" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚗 車程約40分鐘 → Mooloolaba</div></div>
+    </div>
+    <div class="tl-item restaurant">
+      <div class="tl-time">晚餐</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="restaurant-card">
+          <div class="rc-name">🍕 Somedays（Noosa）</div>
+          <div class="rc-type">窯烤披薩 ｜ Mooloolaba大蝦 ｜ Walk-in</div>
+          <div class="rc-note">回程可順路</div>
+        </div>
+        <div class="or-divider">— 或 —</div>
+        <div class="restaurant-card">
+          <div class="rc-name">🦐 The Wharf Mooloolaba</div>
+          <div class="rc-type">碼頭海鮮 ｜ 輕鬆 casual ｜ 無需訂位</div>
+          <div class="rc-note">Mooloolaba住宿附近，方便</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 6 -->
+<div class="day-section" id="d6">
+  <div class="day-header">
+    <div class="dh-label">Day 6</div>
+    <div class="dh-date">8/11（二）→ 黃金海岸</div>
+    <div class="dh-loc">🐨 龍柏 → Aquaduck → Skypoint → RACV</div>
+    <div class="dh-depart">🕗 建議 08:30 出門，龍柏09:00開門</div>
+  </div>
+  <div class="drive-banner">
+    🚗 Mooloolaba → Lone Pine（Brisbane）<span class="drive-time">約1小時</span>
+    <a href="https://maps.google.com/?saddr=Mooloolaba&daddr=Lone+Pine+Koala+Sanctuary+Brisbane" target="_blank">開導航 ›</a>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">09:00</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🐨 龍柏 Lone Pine Koala Sanctuary</div>
+        <div class="tl-note">⚠️ 2024年7月起無法抱無尾熊<br>可預約「近距離無尾熊體驗」— 撫摸、餵葉子、拍照，需額外付費<br>袋鼠餵食 ✓ 猛禽秀 ✓ 牧羊犬秀 ✓<br>建議停留約2.5小時，12:00前離開</div>
+        <span class="tl-badge badge-yellow">🌤️ 戶外為主</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Lone+Pine+Koala+Sanctuary+Brisbane" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚗 車程約1小時 → Surfers Paradise（黃金海岸）</div></div>
+    </div>
+    <div class="tl-item restaurant">
+      <div class="tl-time">午餐</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="restaurant-card">
+          <div class="rc-name">🏄 BMD Northcliffe Surf Club</div>
+          <div class="rc-type">澳式海景 ｜ 親子友善 ｜ CP值高</div>
+          <div class="rc-note">51 Garfield Terrace，無需訂位，抵達黃金海岸後順路</div>
+        </div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">15:10</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🦆 Aquaduck 水陸觀光車</div>
+        <div class="tl-note">Surfers Paradise 報到，Circle on Cavill 停車<br>含城市與水道導覽，約1小時</div>
+        <span class="tl-badge badge-green">🟢 有遮蔽</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Aquaduck+Surfers+Paradise" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚶 步行 約10分鐘 → Skypoint Q1大樓</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">17:00</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🌆 Skypoint Observation Deck</div>
+        <div class="tl-note">270公尺高，Q1大樓頂｜黃昏前後拍照景色最佳</div>
+        <span class="tl-badge badge-green">🟢 室內</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=SkyPoint+Observation+Deck+Gold+Coast" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚗 車程約15分鐘 → RACV 皇家松林</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">晚上</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🏨 RACV Royal Pines Resort Check-in</div>
+        <div class="tl-note">Ross St, Benowa QLD 4217</div>
+        <a class="nav-btn" href="https://maps.google.com/?q=RACV+Royal+Pines+Resort+Gold+Coast" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 7 -->
+<div class="day-section" id="d7">
+  <div class="day-header">
+    <div class="dh-label">Day 7</div>
+    <div class="dh-date">8/12（三）黃金海岸</div>
+    <div class="dh-loc">🌊 Sea World ｜ Harbour Town</div>
+    <div class="dh-depart">🕘 建議 09:00 出門，Sea World 10:00開門</div>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">10:00</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🌊 Sea World</div>
+        <div class="tl-note">海豚、北極熊、水上樂園<br>線上購票有折扣，建議提前買</div>
+        <span class="tl-badge badge-green">🟢 半室內可替代</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Sea+World+Gold+Coast" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚗 車程約10分鐘 → Harbour Town</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">下午</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🛍️ Harbour Town Premium Outlets</div>
+        <div class="tl-note">品牌折扣購物中心</div>
+        <span class="tl-badge badge-green">🟢 室內</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Harbour+Town+Gold+Coast" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-item restaurant">
+      <div class="tl-time">晚餐</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="restaurant-card">
+          <div class="rc-name">🌶️ Nahm Talay Thai</div>
+          <div class="rc-type">泰式 ｜ 在地口碑 ｜ 有素食選項</div>
+          <div class="rc-note">⚠️ 建議提前訂位</div>
+        </div>
+        <div class="or-divider">— 或 —</div>
+        <div class="restaurant-card">
+          <div class="rc-name">🏄 BMD Northcliffe Surf Club</div>
+          <div class="rc-type">海景澳式 ｜ 親子友善 ｜ 無需訂位</div>
+          <div class="rc-note">51 Garfield Terrace, Surfers Paradise</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 8 -->
+<div class="day-section" id="d8">
+  <div class="day-header">
+    <div class="dh-label">Day 8</div>
+    <div class="dh-date">8/13（四）Byron Bay</div>
+    <div class="dh-loc">🐋 燈塔 ｜ 賞鯨 ｜ Garden Burees住宿</div>
+    <div class="dh-depart">🕗 建議 08:00 出門，車程1.5小時</div>
+  </div>
+  <div class="drive-banner">
+    🚗 Gold Coast → Byron Bay<span class="drive-time">約1.5小時</span>
+    <a href="https://maps.google.com/?saddr=Gold+Coast+QLD&daddr=Byron+Bay+NSW" target="_blank">開導航 ›</a>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">09:30</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🌊 Arakwal 海岸觀景台</div>
+        <div class="tl-note">俯瞰塔斯曼海域，步行約1.5小時全程</div>
+        <span class="tl-badge badge-red">🔴 大雨備案：Byron Bay 市區逛街</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Cape+Byron+Arakwal+Lookout" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚶 步行 約20分鐘 → Cape Byron Lighthouse</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">11:30</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🔦 Cape Byron Lighthouse</div>
+        <div class="tl-note">澳洲最東端 ｜ 8月有機會看座頭鯨！</div>
+        <span class="tl-badge badge-yellow">🌤️ 戶外</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Cape+Byron+Lighthouse" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-item restaurant">
+      <div class="tl-time">午餐</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="restaurant-card">
+          <div class="rc-name">🌿 Three Blue Ducks at The Farm</div>
+          <div class="rc-type">農場餐廳 ｜ Ducklings兒童菜單 ｜ 親子首選</div>
+          <div class="rc-note">⚠️ 熱門，強烈建議提前訂位！距市區10分鐘</div>
+        </div>
+        <div class="or-divider">— 或 —</div>
+        <div class="restaurant-card">
+          <div class="rc-name">🍕 Treehouse Byron Bay</div>
+          <div class="rc-type">地中海披薩 ｜ Belongil Beach旁 ｜ Live music</div>
+          <div class="rc-note">輕鬆氛圍，親子適合</div>
+        </div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">晚上</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🏨 Garden Burees, Grand Buree Check-in</div>
+        <div class="tl-note">Byron Bay 住宿，確認停車位</div>
+        <a class="nav-btn" href="https://maps.google.com/?q=Garden+Burees+Byron+Bay" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 9 -->
+<div class="day-section" id="d9">
+  <div class="day-header">
+    <div class="dh-label">Day 9</div>
+    <div class="dh-date">8/14（五）Port Macquarie</div>
+    <div class="dh-loc">🦎 長途自駕日（約4小時含停靠）</div>
+    <div class="dh-depart">🕗 建議 08:00 出門，路途長，早出早到</div>
+  </div>
+  <div class="drive-banner">
+    🚗 Byron Bay → Port Macquarie<span class="drive-time">約4小時（含停靠）</span>
+    <a href="https://maps.google.com/?saddr=Byron+Bay+NSW&daddr=Port+Macquarie+NSW" target="_blank">開導航 ›</a>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">停靠①</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🦎 Maclean Ferry Park Rest Area</div>
+        <div class="tl-note">M1高速公路 Cameron St出口，出發後約1小時16分<br>可看野生大蜥蜴（Goannas）曬太陽<br>旁有 Oliver's 咖啡廳 ＋ 廁所<br>繞進市區3分鐘可到 Wherrett Park 共融遊樂場（大型滑梯塔）</div>
+        <span class="tl-badge badge-yellow">🌤️ 戶外</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Ferry+Park+Rest+Area+Maclean+NSW" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚗 車程約1小時15分 → Coffs Harbour</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">停靠②</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">⚓ Coffs Harbour Jetty & Marina</div>
+        <div class="tl-note">百年木棧橋，幸運可見海龜、魟魚<br>Jetty Foreshores Park 免費遊樂場<br>旁有 Fish & Chips、露天咖啡廳</div>
+        <span class="tl-badge badge-yellow">🌤️ 戶外</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Coffs+Harbour+Jetty+Marina" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚗 車程約1小時45分 → Port Macquarie 飯店</div></div>
+    </div>
+    <div class="tl-item restaurant">
+      <div class="tl-time">晚餐</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="restaurant-card">
+          <div class="rc-name">🍷 taste @ Cassegrain Wines</div>
+          <div class="rc-type">酒莊餐廳 ｜ 有兒童菜單 ｜ 景觀用餐</div>
+          <div class="rc-note">⚠️ 建議提前訂位</div>
+        </div>
+        <div class="or-divider">— 或 —</div>
+        <div class="restaurant-card">
+          <div class="rc-name">🦐 Whalebone Wharf Seafood</div>
+          <div class="rc-type">新鮮海產 ｜ 水邊用餐 ｜ 在地人氣</div>
+          <div class="rc-note">Port Macquarie 市區，無需訂位</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 10 -->
+<div class="day-section" id="d10">
+  <div class="day-header">
+    <div class="dh-label">Day 10</div>
+    <div class="dh-date">8/15（六）Newcastle</div>
+    <div class="dh-loc">🐨 Guulabaa ｜ 沙丘 ｜ Breakwater 日落</div>
+    <div class="dh-depart">🕗 建議 08:30 出門，Breakwater日落16:00前必到</div>
+  </div>
+  <div class="drive-banner">
+    🚗 Port Macquarie → Newcastle<span class="drive-time">約2.5小時</span>
+    <a href="https://maps.google.com/?saddr=Port+Macquarie+NSW&daddr=Newcastle+NSW" target="_blank">開導航 ›</a>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">11:00</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🐨 Guulabaa - Place of Koala</div>
+        <div class="tl-note">高速公路出口附近，停車方便<br>近距離看無尾熊 ＋ 互動展覽，6歲最適合</div>
+        <span class="tl-badge badge-green">🟢 半室內</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Guulabaa+Place+of+Koala+NSW" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚗 車程約20分鐘 → One Mile Sand Dune</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">13:00</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🏜️ One Mile Sand Dune 滑沙</div>
+        <div class="tl-note">帶紙板滑沙，孩子最開心！<br>備案：John Holland Park 看鹽水湖＋海豚</div>
+        <span class="tl-badge badge-red">🔴 下雨改備案</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=One+Mile+Beach+Sand+Dune+NSW" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-item restaurant">
+      <div class="tl-time">午餐</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="restaurant-card">
+          <div class="rc-name">🏄 Merewether Surfhouse</div>
+          <div class="rc-type">海景澳式 ｜ 口碑極佳 ｜ Merewether Beach旁</div>
+          <div class="rc-note">5 Henderson Parade，建議訂位</div>
+        </div>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚶 步行 約5分鐘 → Merewether Ocean Baths</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">14:30</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🏊 Merewether Beach & Ocean Baths</div>
+        <div class="tl-note">澳洲最大海水游泳池，午後陽光最美</div>
+        <span class="tl-badge badge-red">🔴 雨天跳過</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Merewether+Ocean+Baths+Newcastle" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚗 車程約10分鐘 → Newcastle Breakwater</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">⚠️16:00前</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🌇 Newcastle Breakwater 逆光日落</div>
+        <div class="tl-note">⚠️ 下午4點前一定要到位！黃昏逆光超美</div>
+        <span class="tl-badge badge-red">🔴 雨天改 Oceane Hotel 晚餐</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Newcastle+Breakwater+NSW" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-item restaurant">
+      <div class="tl-time">晚餐</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="restaurant-card">
+          <div class="rc-name">🌊 Oceane Hotel</div>
+          <div class="rc-type">港口邊 ｜ 多元料理 ｜ 適合晚餐</div>
+          <div class="rc-note">雨天備案也可來這裡</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 11 -->
+<div class="day-section" id="d11">
+  <div class="day-header">
+    <div class="dh-label">Day 11</div>
+    <div class="dh-date">8/16（日）→ 雪梨</div>
+    <div class="dh-loc">🚗 → Sydney ｜ 17:00 還車</div>
+    <div class="dh-depart">🕘 睡飽再出發，沿中央海岸輕鬆開</div>
+  </div>
+  <div class="drive-banner">
+    🚗 Newcastle → Sydney（中央海岸）<span class="drive-time">約2小時</span>
+    <a href="https://maps.google.com/?saddr=Newcastle+NSW&daddr=Sydney+NSW" target="_blank">開導航 ›</a>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">途中</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🦢 The Entrance 入口鎮（停靠）</div>
+        <div class="tl-note">每天 15:30 野生鵜鶘（塘鵝）餵食秀<br>美麗濱海步道 ＋ 露天咖啡廳<br>⏰ 需規劃出發時間才能趕上餵食秀</div>
+        <span class="tl-badge badge-yellow">🌤️ 戶外</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=The+Entrance+NSW" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚗 車程約1小時 → 雪梨市區</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">⚠️17:00前</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🚗 Avis 雪梨還車</div>
+        <div class="tl-note">⚠️ 17:00 前還車，確認還車地點</div>
+        <a class="nav-btn" href="https://maps.google.com/?q=Avis+Car+Rental+Sydney+City" target="_blank">🗺 還車地點</a>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">傍晚</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🌅 Darling Harbour 夕陽</div>
+        <div class="tl-note">漫步港灣，輕鬆收尾自駕之旅</div>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Darling+Harbour+Sydney" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-item restaurant">
+      <div class="tl-time">晚餐</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="restaurant-card">
+          <div class="rc-name">🍝 Fratelli Fresh（Darling Quarter）</div>
+          <div class="rc-type">義大利家庭料理 ｜ 兒童菜單 ｜ 輕鬆氛圍</div>
+          <div class="rc-note">餐後走去 Gelato Messina 🍨</div>
+        </div>
+        <div class="or-divider">— 或 —</div>
+        <div class="restaurant-card">
+          <div class="rc-name">🥟 Noodle Face（Darling Quarter）</div>
+          <div class="rc-type">中式水餃麵食 ｜ $20以下 ｜ 快速方便</div>
+          <div class="rc-note">親子樂園旁，省體力</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 12 -->
+<div class="day-section" id="d12">
+  <div class="day-header">
+    <div class="dh-label">Day 12</div>
+    <div class="dh-date">8/17（一）雪梨</div>
+    <div class="dh-loc">🐟 魚市場 ｜ 歌劇院 ｜ 植物園</div>
+    <div class="dh-depart">🕖 建議 07:00 出門，魚市場早去人少</div>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">07:00</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🐟 Sydney Fish Market</div>
+        <div class="tl-note">早餐性質，現點現吃！生蠔、鮮蝦必點<br>早去人少、選擇多</div>
+        <span class="tl-badge badge-green">🟢 半室內</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Sydney+Fish+Market" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚌 巴士/步行 約20分鐘 → Circular Quay</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">10:00</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🎭 雪梨歌劇院 中文導覽</div>
+        <div class="tl-note">⚠️ 需提前預約！中文場次有限，約1小時</div>
+        <span class="tl-badge badge-green">🟢 室內</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Sydney+Opera+House" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚶 步行 約5分鐘 → 皇家植物園</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">下午</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🌿 皇家植物園</div>
+        <div class="tl-note">歌劇院旁，港灣景觀，散步放電，免費入園</div>
+        <span class="tl-badge badge-red">🔴 雨天備案：The Rocks 室內逛街</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Royal+Botanic+Garden+Sydney" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-item restaurant">
+      <div class="tl-time">午餐</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="restaurant-card">
+          <div class="rc-name">🥟 Noodle Face（Darling Quarter）</div>
+          <div class="rc-type">中式麵食 ｜ $20以下 ｜ 輕鬆快速</div>
+          <div class="rc-note">省體力留給下午植物園</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 13 -->
+<div class="day-section" id="d13">
+  <div class="day-header">
+    <div class="dh-label">Day 13</div>
+    <div class="dh-date">8/18（二）雪梨郊外</div>
+    <div class="dh-loc">🦘 Perfect Day Sydney 全日遊</div>
+    <div class="dh-depart">🕗 依接送時間，導遊安排</div>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">全天</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🦘 Perfect Day Sydney</div>
+        <div class="tl-note">野生袋熊 ＋ 袋鼠 ＋ 瀑布 ＋ 飛狐<br>含接送、餐點、零食、免費WiFi<br>最多20人小團，輕鬆無壓力<br>⚠️ 名額有限，盡快預約！</div>
+        <span class="tl-badge badge-green">🟢 含室內外，導遊安排</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 14 -->
+<div class="day-section" id="d14">
+  <div class="day-header">
+    <div class="dh-label">Day 14</div>
+    <div class="dh-date">8/19（三）雪梨 → 台北</div>
+    <div class="dh-loc">🦁 Taronga Zoo ｜ CI52 22:00</div>
+    <div class="dh-depart">🕘 建議 09:00 出門，渡輪 09:30</div>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">09:30</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">⛴️ Circular Quay 搭渡輪</div>
+        <div class="tl-note">渡輪＋Zoo套票，享港灣景觀，約12分鐘到對岸</div>
+        <span class="tl-badge badge-green">🟢 室內外</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Circular+Quay+Wharf+Sydney" target="_blank">🗺 碼頭導航</a>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">⛴️ 渡輪 約12分鐘 → Taronga Zoo</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">09:30</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🦁 Taronga Zoo Sydney</div>
+        <div class="tl-note">9:30–16:30（8月）｜Sydney Harbour 景觀<br>海豹秀 11:00 & 14:00 ｜ 飛鳥秀 12:00 & 15:00<br>⚠️ 15:30 前離開，預留機場時間</div>
+        <span class="tl-badge badge-yellow">🌤️ 戶外為主</span>
+        <br><a class="nav-btn" href="https://maps.google.com/?q=Taronga+Zoo+Sydney" target="_blank">🗺 導航</a>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">15:30</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🧳 回飯店取行李</div>
+        <div class="tl-note">百麗旅店 check-out，確認行李寄存安排</div>
+      </div>
+    </div>
+    <div class="tl-transit">
+      <div class="tl-time"></div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-transit-note">🚕 市區→機場約 30–45分鐘</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">17:30</div>
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-title">🚕 前往 Sydney Airport</div>
+        <div class="tl-note">CI52 22:00 起飛，建議 17:30 出發</div>
+        <a class="nav-btn" href="https://maps.google.com/?q=Sydney+Kingsford+Smith+Airport" target="_blank">🗺 機場導航</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end itinerary -->
+
+<!-- ══════════════ TAB 3: CHECKLIST ══════════════ -->
+<div id="tab-checklist" class="section">
+  <div class="checklist-section">
+    <div class="cl-header">🔴 出發前必辦</div>
+    <div class="cl-item"><input type="checkbox" id="c1"><label for="c1"><span class="cl-title">澳洲 ETA 簽證（6人）<span class="badge-urgent">必辦</span></span><span class="cl-desc">每人一張，Australian ETA App申請，持台灣護照適用</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="c2"><label for="c2"><span class="cl-title">國際駕照<span class="badge-urgent">必辦</span></span><span class="cl-desc">台灣駕照＋國際駕照一起帶，缺一不可</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="c3"><label for="c3"><span class="cl-title">旅遊保險（6人）<span class="badge-urgent">必辦</span></span><span class="cl-desc">含醫療、行李、自駕事故，有小孩買完整版</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="c4"><label for="c4"><span class="cl-title">Type I 插頭轉接頭<span class="badge-soon">購買</span></span><span class="cl-desc">澳洲三斜腳插頭，至少帶3–4個（四大兩小）</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="c5"><label for="c5"><span class="cl-title">信用卡海外刷卡開通<span class="badge-soon">確認</span></span><span class="cl-desc">確認額度＋海外功能，備少量澳幣現金</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="c6"><label for="c6"><span class="cl-title">Avis 租車再確認<span class="badge-urgent">確認</span></span><span class="cl-desc">兒童座椅（2個）、8/16 17:00前雪梨還車地點</span></label></div>
+  </div>
+
+  <div class="checklist-section">
+    <div class="cl-header">🎡 票券 ／ 體驗預訂</div>
+    <div class="cl-item"><input type="checkbox" id="t1"><label for="t1"><span class="cl-title">Australia Zoo 無尾熊抱抱<span class="badge-urgent">立刻訂</span></span><span class="cl-desc">Wildlife Experience，需單獨預約，6人名額需早訂</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="t2"><label for="t2"><span class="cl-title">龍柏 Lone Pine 近距離無尾熊體驗<span class="badge-urgent">立刻訂</span></span><span class="cl-desc">2024年7月起無法抱，改為近距離撫摸＋拍照，需額外付費預約</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="t3"><label for="t3"><span class="cl-title">Perfect Day Sydney<span class="badge-urgent">立刻訂</span></span><span class="cl-desc">8/18（二）全日野生動物團，最多20人，6人需早訂</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="t4"><label for="t4"><span class="cl-title">EKKA 門票（6人）<span class="badge-urgent">盡快買</span></span><span class="cl-desc">8/8（六）開幕日，ekka.com.au 官網購票</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="t5"><label for="t5"><span class="cl-title">雪梨歌劇院 中文導覽<span class="badge-urgent">盡快訂</span></span><span class="cl-desc">8/17（一），中文場次有限，6人需提前預約</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="t5b"><label for="t5b"><span class="cl-title">Australia Zoo 週一開放確認<span class="badge-urgent">確認</span></span><span class="cl-desc">8/10（一）週一全館是否正常開放，無尾熊體驗是否照常</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="t6"><label for="t6"><span class="cl-title">GoBoat Brisbane 確認<span class="badge-soon">再確認</span></span><span class="cl-desc">8/7（五）10:45，確認訂位＋6人Waiver電子版</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="t7"><label for="t7"><span class="cl-title">Aquaduck 黃金海岸<span class="badge-soon">提前訂</span></span><span class="cl-desc">8/11（二）15:30，Surfers Paradise報到，6人座位確認</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="t8"><label for="t8"><span class="cl-title">SkyPoint 觀景台<span class="badge-soon">提前買</span></span><span class="cl-desc">8/11（二）17:00，線上購票省排隊</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="t9"><label for="t9"><span class="cl-title">Sea World（6人）<span class="badge-soon">提前買</span></span><span class="cl-desc">8/12（三），線上購票有折扣</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="t10"><label for="t10"><span class="cl-title">Taronga Zoo + 渡輪套票<span class="badge-ok">提前買</span></span><span class="cl-desc">8/19（三），Circular Quay搭船，線上購有優惠</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="t11"><label for="t11"><span class="cl-title">TreeTop Challenge Juniors（若選此項）<span class="badge-soon">提前訂</span></span><span class="cl-desc">Day 4，Big Pineapple，Woombye，需預約時段</span></label></div>
+  </div>
+
+  <div class="checklist-section">
+    <div class="cl-header">🍽️ 餐廳訂位</div>
+    <div class="cl-item"><input type="checkbox" id="r1"><label for="r1"><span class="cl-title">Three Blue Ducks at The Farm（Byron Bay）<span class="badge-urgent">立刻訂</span></span><span class="cl-desc">8/13（四），熱門親子農場餐廳，6人需早訂</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="r2"><label for="r2"><span class="cl-title">Felons（布里斯本）<span class="badge-soon">提前訂</span></span><span class="cl-desc">Day 1 晚餐選項，河景餐廳，建議訂位</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="r3"><label for="r3"><span class="cl-title">Doodee Boran（布里斯本）<span class="badge-urgent">強烈建議訂</span></span><span class="cl-desc">Day 2 晚餐選項，平日都大排隊，6人需提前訂位</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="r4"><label for="r4"><span class="cl-title">Noosa Boathouse<span class="badge-soon">提前訂</span></span><span class="cl-desc">8/9（日）陽光海岸，河上漂浮餐廳</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="r5"><label for="r5"><span class="cl-title">taste @ Cassegrain Wines（Port Macquarie）<span class="badge-soon">1–2週前</span></span><span class="cl-desc">8/14（五），電話或官網訂位</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="r6"><label for="r6"><span class="cl-title">Merewether Surfhouse（Newcastle）<span class="badge-ok">建議訂</span></span><span class="cl-desc">8/15（六）午餐，週六人多建議提前</span></label></div>
+  </div>
+
+  <div class="checklist-section">
+    <div class="cl-header">🏨 住宿確認</div>
+    <div class="cl-item"><input type="checkbox" id="h1"><label for="h1"><span class="cl-title">Airbnb South Brisbane（8/6–8/8）</span><span class="cl-desc">確認check-in時間＋鑰匙取得方式，停車安排</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="h2"><label for="h2"><span class="cl-title">Airbnb Mooloolaba（8/9–8/10）</span><span class="cl-desc">19 Muraban Street 6，確認停車位</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="h3"><label for="h3"><span class="cl-title">RACV 皇家松林 Gold Coast（8/11–8/12）</span><span class="cl-desc">確認家庭房設施＋停車</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="h4"><label for="h4"><span class="cl-title">Garden Burees Byron Bay（8/13–8/14）</span><span class="cl-desc">確認check-in時間＋停車位</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="h5"><label for="h5"><span class="cl-title">Tranquillity on Point Port Macquarie（8/14–8/15）</span><span class="cl-desc">確認check-in時間</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="h6"><label for="h6"><span class="cl-title">Airbnb Newcastle（8/15–8/16）</span><span class="cl-desc">確認停車安排</span></label></div>
+    <div class="cl-item"><input type="checkbox" id="h7"><label for="h7"><span class="cl-title">百麗旅店 Sydney（8/16–8/19）</span><span class="cl-desc">確認check-in＋8/19行李寄存服務</span></label></div>
+  </div>
+</div>
+
+<!-- ══════════════ TAB 4: TIPS ══════════════ -->
+<div id="tab-tips" class="section">
+  <div class="tips-card">
+    <div class="tips-card-header" onclick="toggleTip(this)"><span>📋</span>入境 ＆ 簽證<span style="margin-left:auto">▼</span></div>
+    <div class="tips-card-body">
+      <div class="tip-highlight">入境澳洲需備齊：護照、ETA簽證、入境旅客卡，三樣缺一不可</div>
+      <div class="tip-item"><strong>ETA申請：</strong>台灣護照可透過「Australian ETA手機程式」申請601簽證，即時審批，6人各自申請</div>
+      <div class="tip-item"><strong>食物申報：</strong>⚠️ 肉類（牛肉乾、豬肉鬆）、種子、蔬果、海味、補品一律申報。未申報罰款$200–$10,000 AUD或拒絕入境</div>
+    </div>
+  </div>
+  <div class="tips-card">
+    <div class="tips-card-header" onclick="toggleTip(this)"><span>🚗</span>自駕注意事項<span style="margin-left:auto">▼</span></div>
+    <div class="tips-card-body">
+      <div class="tip-item"><strong>台灣駕照＋國際駕照：</strong>兩者必須同時攜帶</div>
+      <div class="tip-item"><strong>靠左行駛：</strong>澳洲靠左，方向盤在右側，剛開始需適應</div>
+      <div class="tip-item"><strong>兒童座椅：</strong>確認Avis已預訂兩個（6歲以下強制使用）</div>
+      <div class="tip-item"><strong>時速限制：</strong>市區50km/h，高速100–110km/h，超速罰款重</div>
+      <div class="tip-item"><strong>Playground技巧：</strong>開車累了Google Maps搜尋「Playground」，幾乎每個小鎮都有免費兒童遊樂場＋廁所</div>
+      <div class="tip-item"><strong>野生動物：</strong>黃昏及夜間特別注意路邊袋鼠，建議避免夜間長途駕駛</div>
+    </div>
+  </div>
+  <div class="tips-card">
+    <div class="tips-card-header" onclick="toggleTip(this)"><span>🕐</span>時差<span style="margin-left:auto">▼</span></div>
+    <div class="tips-card-body">
+      <div class="tip-highlight">⚠️ 從黃金海岸進入Byron Bay即進入NSW，時區改變！</div>
+      <div class="tip-item"><strong>布里斯本／昆士蘭：</strong>比台灣快2小時</div>
+      <div class="tip-item"><strong>雪梨／新南威爾斯：</strong>比台灣快3小時（8月冬令時間）</div>
+    </div>
+  </div>
+  <div class="tips-card">
+    <div class="tips-card-header" onclick="toggleTip(this)"><span>⚡</span>電力 ＆ 貨幣<span style="margin-left:auto">▼</span></div>
+    <div class="tips-card-body">
+      <div class="tip-item"><strong>插頭：</strong>Type I（三斜腳），220V/50Hz，需帶轉接頭，確認電器支援230V</div>
+      <div class="tip-item"><strong>貨幣：</strong>澳幣AUD，1澳幣≈20台幣</div>
+      <div class="tip-item"><strong>週末附加費：</strong>部分餐廳週末有10–15% surcharge，正常現象</div>
+    </div>
+  </div>
+  <div class="tips-card">
+    <div class="tips-card-header" onclick="toggleTip(this)"><span>🌡️</span>氣候 ＆ 穿著<span style="margin-left:auto">▼</span></div>
+    <div class="tips-card-body">
+      <div class="tip-highlight">澳洲8月為冬季，氣溫10–24°C，日夜溫差大</div>
+      <div class="tip-item"><strong>必備：</strong>薄羽絨外套、防風外套、折疊傘</div>
+      <div class="tip-item"><strong>沙灘活動：</strong>8月水溫偏冷（約18°C），下水需評估</div>
+      <div class="tip-item"><strong>部分高級餐廳：</strong>有著裝要求</div>
+    </div>
+  </div>
+  <div class="tips-card">
+    <div class="tips-card-header" onclick="toggleTip(this)"><span>👧</span>親子旅遊提醒<span style="margin-left:auto">▼</span></div>
+    <div class="tips-card-body">
+      <div class="tip-highlight">四大兩小出遊，每天景點控制在2–3個，留彈性休息時間</div>
+      <div class="tip-item"><strong>免費Playground：</strong>幾乎每個小鎮都有，Google Maps搜尋「Playground」</div>
+      <div class="tip-item"><strong>無尾熊抱抱：</strong>Australia Zoo需提前預約，龍柏改為近距離體驗</div>
+      <div class="tip-item"><strong>長途自駕日：</strong>Day 9最長，每1.5小時讓孩子下車活動</div>
+      <div class="tip-item"><strong>兒童票：</strong>3歲以下通常免費，預購時注意年齡限制</div>
+    </div>
+  </div>
+  <div class="tips-card">
+    <div class="tips-card-header" onclick="toggleTip(this)"><span>🏥</span>安全 ＆ 衛生<span style="margin-left:auto">▼</span></div>
+    <div class="tips-card-body">
+      <div class="tip-item"><strong>飲水：</strong>澳洲自來水不可直接飲用，建議買瓶裝水或帶過濾壺</div>
+      <div class="tip-item"><strong>財不露白：</strong>市區不輕易讓陌生人接近，貴重物品隨身</div>
+      <div class="tip-item"><strong>住宿安全：</strong>隨時扣上安全鎖，聽到警報器立刻從緊急出口離開</div>
+      <div class="tip-item"><strong>環保：</strong>建議攜帶個人牙刷、毛巾等盥洗用品</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ TAB 5: WEATHER ══════════════ -->
+<div id="tab-weather" class="section">
+  <p style="font-size:13px;color:#64748b;margin-bottom:16px;">即時天氣預報（出發前再查更準確）</p>
+  <div id="weatherGrid"><div style="grid-column:1/-1;text-align:center;color:#94a3b8;padding:20px;font-size:13px;">載入中…</div></div>
+  <p style="font-size:11px;color:#94a3b8;margin-top:16px;text-align:center;">資料來源：Open-Meteo ｜ 8月澳洲冬季 10–24°C</p>
+</div>
+
+<div class="footer">🦘 澳洲東岸 2026 ｜ 四大兩小家族冒險<br>Made with ❤️ for our family adventure</div>
+
+<script>
+function showTab(name, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+  if (name === 'weather') loadWeather();
+}
+function goDay(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-itinerary').classList.add('active');
+  document.querySelectorAll('.tab-btn')[1].classList.add('active');
+  setTimeout(() => { const el = document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }, 100);
+}
+function toggleTip(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('span:last-child');
+  body.classList.toggle('open');
+  arrow.textContent = body.classList.contains('open') ? '▲' : '▼';
+}
+document.querySelectorAll('input[type=checkbox]').forEach(cb => {
+  const key = 'aus26_' + cb.id;
+  try { if(localStorage.getItem(key)==='true') cb.checked=true; } catch(e){}
+  cb.addEventListener('change', () => { try { localStorage.setItem(key, cb.checked); } catch(e){} });
+});
+const cities = [
+  {name:'Brisbane',lat:-27.47,lon:153.02},
+  {name:'Sunshine Coast',lat:-26.65,lon:153.07},
+  {name:'Gold Coast',lat:-28.02,lon:153.43},
+  {name:'Byron Bay',lat:-28.64,lon:153.62},
+  {name:'Port Macquarie',lat:-31.43,lon:152.91},
+  {name:'Newcastle',lat:-32.93,lon:151.78},
+  {name:'Sydney',lat:-33.87,lon:151.21},
+];
+const wEmoji = c => c===0?'☀️':c<=2?'⛅':c<=3?'☁️':c<=48?'🌫️':c<=67?'🌧️':c<=77?'🌨️':'⛈️';
+const wDesc = c => c===0?'晴天':c<=2?'多雲':c<=3?'陰天':c<=48?'霧':c<=67?'降雨':'雷陣雨';
+let weatherLoaded = false;
+async function loadWeather() {
+  if(weatherLoaded) return; weatherLoaded=true;
+  const grid = document.getElementById('weatherGrid'); grid.innerHTML='';
+  for(const city of cities) {
+    try {
+      const r = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Australia/Sydney&forecast_days=3`);
+      const d = await r.json();
+      const code=d.daily.weathercode[0], max=Math.round(d.daily.temperature_2m_max[0]), min=Math.round(d.daily.temperature_2m_min[0]), rain=d.daily.precipitation_probability_max[0];
+      const card=document.createElement('div'); card.className='w-card';
+      card.innerHTML=`<div class="w-city">${city.name}</div><div class="w-emoji">${wEmoji(code)}</div><div class="w-temp">${min}°–${max}°C</div><div class="w-desc">${wDesc(code)} ☔${rain}%</div>`;
+      grid.appendChild(card);
+    } catch(e) {
+      const card=document.createElement('div'); card.className='w-card';
+      card.innerHTML=`<div class="w-city">${city.name}</div><div class="w-emoji">—</div><div class="w-desc">無法取得</div>`;
+      grid.appendChild(card);
+    }
+  }
+}
+</script>
+</body>
+</html>
